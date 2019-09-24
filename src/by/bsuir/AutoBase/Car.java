@@ -8,6 +8,7 @@ public class Car extends  Vehicle implements java.io.Serializable{
     private int seatCount;
     private BodyType bodyType;
     private int doorCount;
+    private int x;
 
     public int getSeatCount() {
         return seatCount;
