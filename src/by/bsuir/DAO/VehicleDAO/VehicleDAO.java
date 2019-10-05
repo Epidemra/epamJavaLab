@@ -2,10 +2,14 @@ package by.bsuir.DAO.VehicleDAO;
 
 import by.bsuir.AutoBase.AutoBase;
 import by.bsuir.AutoBase.Vehicle;
+import by.bsuir.DAO.DaoFactory;
 
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * The type Vehicle dao.
+ */
 public class VehicleDAO implements IVehicleDAO {
 
     private static String filePath = getDatabasePath();
@@ -36,7 +40,12 @@ public class VehicleDAO implements IVehicleDAO {
         return Vehicles;
     }
 
-    private static void SerializeVehicles(ArrayList<Vehicle> Vehicles){
+    /**
+     * Serialize vehicles.
+     *
+     * @param Vehicles the vehicles
+     */
+    public void SerializeVehicles(ArrayList<Vehicle> Vehicles){
         try
         {
             //Saving of object in a file
@@ -55,22 +64,69 @@ public class VehicleDAO implements IVehicleDAO {
         }
     }
 
-    public boolean Delete(Vehicle vehicle){
-        throw new UnsupportedOperationException();
+    public void Delete(int index){
+        ArrayList<Vehicle> Vehicles = getVehicles();
+        if (Vehicles != null){
+            Vehicles.remove(index);
+            AutoBase.setCarList(Vehicles);
+            SerializeVehicles(Vehicles);
+        }
     }
 
     public void Insert(Vehicle vehicle){
-        throw new UnsupportedOperationException();
+        ArrayList<Vehicle> Vehicles = getVehicles();
+        if (Vehicles == null) {
+            Vehicles = new ArrayList<Vehicle>();
+        }
+        Vehicles.add(vehicle);
+        AutoBase.setCarList(Vehicles);
+        SerializeVehicles(Vehicles);
     }
 
     public ArrayList<Vehicle> getVehicles(){
         return DeserializeVehicles();
     }
 
-    static ArrayList<Vehicle> getBooksByTitle(String title){
-        throw new UnsupportedOperationException();
+    /**
+     * Get vehicles by year array list.
+     *
+     * @param year the year
+     * @return the array list
+     */
+    public ArrayList<Vehicle> getVehiclesByYear(int year){
+        ArrayList<Vehicle> vehicles = DaoFactory.getVehicleDAO().getVehicles();
+        ArrayList<Vehicle> resVehicles = new ArrayList<Vehicle>();
+        for (Vehicle vehicle:
+             vehicles) {
+            if (vehicle.getYear() == year)
+                resVehicles.add(vehicle);
+        }
+        return resVehicles;
     }
 
+    /**
+     * Get vehicles by make array list.
+     *
+     * @param make the make
+     * @return the array list
+     */
+    public ArrayList<Vehicle> getVehiclesByMake(String make){
+        ArrayList<Vehicle> vehicles = DaoFactory.getVehicleDAO().getVehicles();
+        ArrayList<Vehicle> resVehicles = new ArrayList<Vehicle>();
+        for (Vehicle vehicle:
+                vehicles) {
+            if (vehicle.getMake().toLowerCase().equals(make.toLowerCase()))
+                resVehicles.add(vehicle);
+        }
+        return resVehicles;
+    }
+
+    /**
+     * Get books by author array list.
+     *
+     * @param author the author
+     * @return the array list
+     */
     static ArrayList<Vehicle> getBooksByAuthor(String author){
         throw new UnsupportedOperationException();
     }
@@ -78,7 +134,4 @@ public class VehicleDAO implements IVehicleDAO {
     private static String getDatabasePath(){
         return new File("").getAbsolutePath()+"\\data\\cars.dat";
     }
-
-
-
 }

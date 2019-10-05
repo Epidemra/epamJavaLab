@@ -7,6 +7,9 @@ import by.bsuir.AutoBase.Vehicle;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * The type User dao.
+ */
 public class UserDAO implements IUserDAO{
 
     private static String filePath = getDatabasePath();
@@ -70,6 +73,12 @@ public class UserDAO implements IUserDAO{
         SerializeUsers(Users);
     }
 
+    /**
+     * Get user by name user.
+     *
+     * @param name the name
+     * @return the user
+     */
     public User getUserByName(String name){
         ArrayList<User> users = DeserializeUsers();
         if (users != null){
@@ -88,10 +97,22 @@ public class UserDAO implements IUserDAO{
         return DeserializeUsers();
     }
 
+    /**
+     * Get books by title array list.
+     *
+     * @param title the title
+     * @return the array list
+     */
     static ArrayList<Vehicle> getBooksByTitle(String title){
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Get books by author array list.
+     *
+     * @param author the author
+     * @return the array list
+     */
     static ArrayList<Vehicle> getBooksByAuthor(String author){
         throw new UnsupportedOperationException();
     }

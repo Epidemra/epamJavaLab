@@ -1,11 +1,14 @@
 package by.bsuir.AutoBase;
 
+import by.bsuir.Compare.CompareByMake;
+import by.bsuir.Compare.CompareByModel;
+import by.bsuir.Compare.CompareByYear;
 import by.bsuir.ControllerLayer.Controller;
 import by.bsuir.DAO.DaoFactory;
-import by.bsuir.DAO.UserDAO.UserDAO;
 import by.bsuir.PresentationLayer.View;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * The type Auto base.
@@ -17,18 +20,38 @@ public class AutoBase implements java.io.Serializable{
     private static ArrayList<Vehicle> carList;
     private static ArrayList<User> users;
 
+    /**
+     * Gets money.
+     *
+     * @return the money
+     */
     public static double getMoney() {
         return money;
     }
 
+    /**
+     * Sets money.
+     *
+     * @param money the money
+     */
     public static void setMoney(double money) {
         AutoBase.money = money;
     }
 
+    /**
+     * Gets current user.
+     *
+     * @return the current user
+     */
     public static User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Sets current user.
+     *
+     * @param currentUser the current user
+     */
     public static void setCurrentUser(User currentUser) {
         AutoBase.currentUser = currentUser;
         if (currentUser != null){
@@ -39,18 +62,38 @@ public class AutoBase implements java.io.Serializable{
         }
     }
 
+    /**
+     * Gets car list.
+     *
+     * @return the car list
+     */
     public static ArrayList<Vehicle> getCarList() {
         return carList;
     }
 
+    /**
+     * Sets car list.
+     *
+     * @param carList the car list
+     */
     public static void setCarList(ArrayList<Vehicle> carList) {
         AutoBase.carList = carList;
     }
 
+    /**
+     * Gets users.
+     *
+     * @return the users
+     */
     public static ArrayList<User> getUsers() {
         return users;
     }
 
+    /**
+     * Sets users.
+     *
+     * @param users the users
+     */
     public static void setUsers(ArrayList<User> users) {
         AutoBase.users = users;
     }
@@ -61,6 +104,9 @@ public class AutoBase implements java.io.Serializable{
     public AutoBase() {
     }
 
+    /**
+     * Execute.
+     */
     public static void Execute(){
         boolean flag = false;
         do {
@@ -97,8 +143,12 @@ public class AutoBase implements java.io.Serializable{
         ChooseActionLoop();
     }
 
+    /**
+     * Choose action loop.
+     */
     public static void ChooseActionLoop(){
         boolean flag = true;
+        Comparator<Vehicle> pcomp;
 
         while (flag) {
             int action = Controller.chooseActionRequest();
@@ -109,6 +159,37 @@ public class AutoBase implements java.io.Serializable{
                 case 2:
                     flag = false;
                     logOut();
+                    break;
+                case 3:
+                    Vehicle.buyVehicle();
+                    break;
+                case 4:
+                    Vehicle.getVehicles();
+                    break;
+                case 5:
+                    Vehicle.addVehicle();
+                    break;
+                case 6:
+                    Vehicle.deleteVehicle();
+                    break;
+                case 7:
+                    Vehicle.updateVehicle();
+                    break;
+                case 8:
+                    Controller.printListRequest(Vehicle.findByMake());
+                    break;
+                case 9:
+                    Controller.printListRequest(Vehicle.findByYear());
+                    break;
+                case 10:
+                    pcomp = new CompareByMake().thenComparing(new CompareByModel());
+                    Vehicle.sort(pcomp);
+                    Vehicle.getVehicles();
+                    break;
+                case 11:
+                    pcomp = new CompareByYear();
+                    Vehicle.sort(pcomp);
+                    Vehicle.getVehicles();
                     break;
             }
         }
