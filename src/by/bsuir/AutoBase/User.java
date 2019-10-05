@@ -3,15 +3,24 @@ package by.bsuir.AutoBase;
 /**
  * The type Human.
  */
-public abstract class Human implements java.io.Serializable {
+public abstract class User implements java.io.Serializable {
 
     /**
      * Instantiates a new Human.
      */
-    public Human() {
+    public User() {
     }
 
     private String name;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     /**
      * Gets name.

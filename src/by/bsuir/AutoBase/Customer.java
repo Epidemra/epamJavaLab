@@ -3,7 +3,7 @@ package by.bsuir.AutoBase;
 /**
  * The type Customer.
  */
-public class Customer extends Human implements java.io.Serializable{
+public class Customer extends User implements java.io.Serializable{
 
     /**
      * Instantiates a new Customer.

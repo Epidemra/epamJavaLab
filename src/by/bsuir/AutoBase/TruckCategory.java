@@ -7,13 +7,13 @@ public enum TruckCategory {
     /**
      * Heavy truck category.
      */
-    Heavy,
+    HEAVY,
     /**
      * Medium truck category.
      */
-    Medium,
+    MEDIUM,
     /**
      * Light truck category.
      */
-    Light
+    LIGHT
 }

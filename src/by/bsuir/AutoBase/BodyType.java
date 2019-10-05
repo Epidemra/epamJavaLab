@@ -11,7 +11,7 @@ public enum BodyType {
     /**
      * Convertible body type.
      */
-    Convertible,
+    CONVERTIBLE,
     /**
      * Suv body type.
      */
@@ -19,21 +19,21 @@ public enum BodyType {
     /**
      * Estate body type.
      */
-    Estate,
+    ESTATE,
     /**
      * Coupe body type.
      */
-    Coupe,
+    COUPE,
     /**
      * Pickup body type.
      */
-    Pickup,
+    PICKUP,
     /**
      * Hatchback body type.
      */
-    Hatchback,
+    HATCHBACK,
     /**
      * Saloon body type.
      */
-    Saloon
+    SALOON
 }

@@ -7,9 +7,9 @@ public enum TransmissionType {
     /**
      * Automatic transmission type.
      */
-    Automatic,
+    AUTOMATIC,
     /**
      * Manual transmission type.
      */
-    Manual
+    MANUAL
 }

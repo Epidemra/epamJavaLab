@@ -7,13 +7,13 @@ public enum FuelType {
     /**
      * Diesel fuel type.
      */
-    Diesel,
+    DIESEL,
     /**
      * Gas fuel type.
      */
-    Gas,
+    GAS,
     /**
      * Petrol fuel type.
      */
-    Petrol
+    PETROL
 }
