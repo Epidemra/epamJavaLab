@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * The interface Serialize.
  */
-public interface ISerialize {
+public interface ISerialize<T> {
 
     /**
      * Deserialize array list.
@@ -13,7 +13,7 @@ public interface ISerialize {
      * @param filePath the file path
      * @return the array list
      */
-    ArrayList<Object> deserialize(String filePath);
+    ArrayList<T> deserialize(String filePath);
 
     /**
      * Serialize.
@@ -21,6 +21,6 @@ public interface ISerialize {
      * @param filePath the file path
      * @param list     the list
      */
-    void serialize(String filePath, ArrayList<Object> list);
+    void serialize(String filePath, ArrayList<T> list);
 
 }

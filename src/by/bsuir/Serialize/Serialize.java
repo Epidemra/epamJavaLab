@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * @param <T> the type parameter
  */
-public class Serialize<T>{
+public class Serialize<T> implements ISerialize<T>{
 
     /**
      * Deserialize array list.
