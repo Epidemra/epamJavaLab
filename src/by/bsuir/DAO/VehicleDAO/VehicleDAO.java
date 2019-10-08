@@ -121,15 +121,6 @@ public class VehicleDAO implements IVehicleDAO {
         return resVehicles;
     }
 
-    /**
-     * Get books by author array list.
-     *
-     * @param author the author
-     * @return the array list
-     */
-    static ArrayList<Vehicle> getBooksByAuthor(String author){
-        throw new UnsupportedOperationException();
-    }
 
     private static String getDatabasePath(){
         return new File("").getAbsolutePath()+"\\data\\cars.dat";

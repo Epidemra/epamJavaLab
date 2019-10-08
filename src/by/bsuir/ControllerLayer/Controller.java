@@ -2,6 +2,7 @@ package by.bsuir.ControllerLayer;
 
 import by.bsuir.AutoBase.AutoBase;
 import by.bsuir.AutoBase.Customer;
+import by.bsuir.AutoBase.Manager;
 import by.bsuir.DAO.DaoFactory;
 import by.bsuir.PresentationLayer.View;
 
@@ -39,13 +40,17 @@ public class Controller {
         int action = View.getAction();
 
         //here ogranicheniya
-        if (action == 12){
+        if (action == 13){
             View.printAvailableActions();
             action = -1;
         }
-        if (action > 4 && AutoBase.getCurrentUser() instanceof Customer){
+        if (action > 8 && AutoBase.getCurrentUser() instanceof Customer){
             action = -1;
             View.ShowMessage("No roots");
+        }
+        if (action == 3 && AutoBase.getCurrentUser() instanceof Manager){
+            action = -1;
+            View.ShowMessage("U must be a customer");
         }
             /*default:
                 notifyUserRequest("Unknown command!");
@@ -80,7 +85,7 @@ public class Controller {
                 counter++;
             }
         }else {
-            View.ShowMessage("No cars in list");
+            View.ShowMessage("Empty list");
         }
     }
 

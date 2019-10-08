@@ -1,5 +1,7 @@
 package by.bsuir.DAO;
 
+import by.bsuir.AutoBase.Purchase;
+import by.bsuir.DAO.PurchaseDAO.PurchaseDAO;
 import by.bsuir.DAO.UserDAO.UserDAO;
 import by.bsuir.DAO.VehicleDAO.VehicleDAO;
 
@@ -11,6 +13,8 @@ public class DaoFactory {
     private static UserDAO userDao = new UserDAO();
 
     private static VehicleDAO vehicleDAO = new VehicleDAO();
+
+    private static PurchaseDAO purchaseDAO = new PurchaseDAO();
 
     /**
      * Gets user dao.
@@ -32,4 +36,6 @@ public class DaoFactory {
     {
         return vehicleDAO;
     }
+
+    public static PurchaseDAO getPurchaseDAO(){ return purchaseDAO; }
 }

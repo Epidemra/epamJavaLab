@@ -111,7 +111,7 @@ public class View {
      * @return the int
      */
     public static int getAction(){
-        System.out.print("\nInput command('12' to see more info): ");
+        System.out.print("\nInput command('13' to see more info): ");
         return ConsoleReader.getInt();
     }
 
@@ -133,13 +133,14 @@ public class View {
         System.out.println("2. Log out");
         System.out.println("3. Buy vehicle");
         System.out.println("4. Show vehicles");
-        System.out.println("5. Add vehicle");
-        System.out.println("6. Delete vehicle");
-        System.out.println("7. Update");
-        System.out.println("8. Find by make");
-        System.out.println("9. Find by year");
-        System.out.println("10. Alphabet sort");
-        System.out.println("11. Year sort");
+        System.out.println("5. Find by make");
+        System.out.println("6. Find by year");
+        System.out.println("7. Alphabet sort");
+        System.out.println("8. Year sort");
+        System.out.println("9. Add vehicle");
+        System.out.println("10. Delete vehicle");
+        System.out.println("11. Update");
+        System.out.println("12. Show purchases");
         /*System.out.println("/findp - Find paper books");
         System.out.println("/mod - Modify book");
         System.out.println("/add - Add book");

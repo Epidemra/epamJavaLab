@@ -19,6 +19,16 @@ public class AutoBase implements java.io.Serializable{
     private static User currentUser;
     private static ArrayList<Vehicle> carList;
     private static ArrayList<User> users;
+    private static ArrayList<Purchase> purchases;
+
+    public static ArrayList<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public static void setPurchases(ArrayList<Purchase> purchases) {
+        AutoBase.purchases = purchases;
+    }
+
 
     /**
      * Gets money.
@@ -167,30 +177,34 @@ public class AutoBase implements java.io.Serializable{
                     Vehicle.getVehicles();
                     break;
                 case 5:
-                    Vehicle.addVehicle();
-                    break;
-                case 6:
-                    Vehicle.deleteVehicle();
-                    break;
-                case 7:
-                    Vehicle.updateVehicle();
-                    break;
-                case 8:
                     Controller.printListRequest(Vehicle.findByMake());
                     break;
-                case 9:
+                case 6:
                     Controller.printListRequest(Vehicle.findByYear());
                     break;
-                case 10:
+                case 7:
                     pcomp = new CompareByMake().thenComparing(new CompareByModel());
                     Vehicle.sort(pcomp);
                     Vehicle.getVehicles();
                     break;
-                case 11:
+                case 8:
                     pcomp = new CompareByYear();
                     Vehicle.sort(pcomp);
                     Vehicle.getVehicles();
                     break;
+                case 9:
+                    Vehicle.addVehicle();
+                    break;
+                case 10:
+                    Vehicle.deleteVehicle(false);
+                    break;
+                case 11:
+                    Vehicle.updateVehicle();
+                    break;
+                case 12:
+                    Purchase.getPurchases();
+                    break;
+
             }
         }
     }

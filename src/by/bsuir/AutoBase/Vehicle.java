@@ -21,6 +21,15 @@ public abstract class Vehicle implements java.io.Serializable{
     private int power;
     private int year;
     private FuelType fuelType;
+    private User manager;
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
+    }
 
     /**
      * Instantiates a new Vehicle.
@@ -184,7 +193,8 @@ public abstract class Vehicle implements java.io.Serializable{
                 "\n  Feul Consumption: "+ fuelConsumption +
                 "\n  Power: "+ power +
                 "\n  Year: "+ year +
-                "\n  Feul Type: "+ fuelType.toString();
+                "\n  Feul Type: "+ fuelType.toString() +
+                (AutoBase.getCurrentUser() instanceof Manager ? "\n  Manager: " + manager.getName() : "");
     }
 
     /**
@@ -203,6 +213,7 @@ public abstract class Vehicle implements java.io.Serializable{
                     (double)answer[4], (int)answer[5], (int)answer[6], (FuelType)answer[7],
                     (int)answer[8], (TruckCategory)answer[9]);
         }
+        vehicle.setManager(AutoBase.getCurrentUser());
 
         DaoFactory.getVehicleDAO().Insert(vehicle);
     }
@@ -221,13 +232,21 @@ public abstract class Vehicle implements java.io.Serializable{
     /**
      * Delete vehicle.
      */
-    public static void deleteVehicle(){
+    public static Vehicle deleteVehicle(boolean isPurchase){
+        Vehicle vehicle = null;
         int index = Controller.getVehicleRequest();
         ArrayList<Vehicle> vehicles = DaoFactory.getVehicleDAO().getVehicles();
 
+        if (!(DaoFactory.getVehicleDAO().getVehicles().get(index - 1).getManager().getName().equals(AutoBase.getCurrentUser().getName())) &&
+                !isPurchase)
+            return vehicle;
+
         if (vehicles != null && index <= vehicles.size()){
+            vehicle = DaoFactory.getVehicleDAO().getVehicles().get(index - 1);
             DaoFactory.getVehicleDAO().Delete(index - 1);
         }
+
+        return vehicle;
     }
 
     /**
@@ -248,7 +267,11 @@ public abstract class Vehicle implements java.io.Serializable{
      * Buy vehicle.
      */
     public static void buyVehicle(){
-        deleteVehicle();
+        Vehicle boughtVehicle = deleteVehicle(true);
+        Purchase purchase = new Purchase();
+        purchase.setCustomer(AutoBase.getCurrentUser());
+        purchase.setVehicle(boughtVehicle);
+        DaoFactory.getPurchaseDAO().Insert(purchase);
     }
 
     /**

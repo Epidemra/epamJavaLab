@@ -97,26 +97,6 @@ public class UserDAO implements IUserDAO{
         return DeserializeUsers();
     }
 
-    /**
-     * Get books by title array list.
-     *
-     * @param title the title
-     * @return the array list
-     */
-    static ArrayList<Vehicle> getBooksByTitle(String title){
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Get books by author array list.
-     *
-     * @param author the author
-     * @return the array list
-     */
-    static ArrayList<Vehicle> getBooksByAuthor(String author){
-        throw new UnsupportedOperationException();
-    }
-
 
     private static String getDatabasePath(){
         return new File("").getAbsolutePath()+"\\data\\users.dat";
