@@ -2,7 +2,7 @@ package by.bsuir.DAO.UserDAO;
 
 import by.bsuir.AutoBase.AutoBase;
 import by.bsuir.AutoBase.User;
-import by.bsuir.AutoBase.Vehicle;
+import by.bsuir.Serialize.Serialize;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,51 +13,7 @@ import java.util.ArrayList;
 public class UserDAO implements IUserDAO{
 
     private static String filePath = getDatabasePath();
-
-    @SuppressWarnings("unchecked")
-    private static ArrayList<User> deserializeUsers(){
-        ArrayList<User> users = null;
-        try
-        {
-            // Reading the object from a file
-            FileInputStream file = new FileInputStream(filePath);
-            ObjectInputStream in = new ObjectInputStream(file);
-
-            // Method for deserialization of object
-            users = (ArrayList<User>)in.readObject();
-
-            in.close();
-            file.close();
-        }
-        catch(IOException ex)
-        {
-            System.out.println("IOException is caught");
-        }
-        catch(ClassNotFoundException ex)
-        {
-            System.out.println("ClassNotFoundException is caught");
-        }
-        return users;
-    }
-
-    private static void serializeUsers(ArrayList<User> users){
-        try
-        {
-            //Saving of object in a file
-            FileOutputStream file = new FileOutputStream(filePath);
-            ObjectOutputStream out = new ObjectOutputStream(file);
-
-            // Method for serialization of object
-            out.writeObject(users);
-
-            out.close();
-            file.close();
-        }
-        catch(IOException ex)
-        {
-            System.out.println("IOException is caught");
-        }
-    }
+    private static Serialize<User> serializer = new Serialize<User>();
 
     public boolean delete(User user){
         throw new UnsupportedOperationException();
@@ -70,7 +26,7 @@ public class UserDAO implements IUserDAO{
         }
         users.add(user);
         AutoBase.setUsers(users);
-        serializeUsers(users);
+        serializer.serialize(filePath, users);
     }
 
     /**
@@ -80,7 +36,7 @@ public class UserDAO implements IUserDAO{
      * @return the user
      */
     public User getUserByName(String name){
-        ArrayList<User> users = deserializeUsers();
+        ArrayList<User> users = serializer.deserialize(filePath);
         if (users != null){
             for (User user: users
             ) {
@@ -89,18 +45,14 @@ public class UserDAO implements IUserDAO{
                 }
             }
         }
-
         return null;
     }
 
     public ArrayList<User> getUsers(){
-        return deserializeUsers();
+        return serializer.deserialize(filePath);
     }
-
 
     private static String getDatabasePath(){
         return new File("").getAbsolutePath()+"\\data\\users.dat";
     }
-
-
 }

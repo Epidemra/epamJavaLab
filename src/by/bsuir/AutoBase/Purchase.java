@@ -61,7 +61,7 @@ public class Purchase implements java.io.Serializable{
      * @param purchase the purchase
      */
     public static void addPurchase(Purchase purchase){
-        DaoFactory.getPurchaseDAO().Insert(purchase);
+        DaoFactory.getPurchaseDAO().insert(purchase);
     }
 
     /**

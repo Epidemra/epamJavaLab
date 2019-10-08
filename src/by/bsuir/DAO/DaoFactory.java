@@ -1,6 +1,5 @@
 package by.bsuir.DAO;
 
-import by.bsuir.AutoBase.Purchase;
 import by.bsuir.DAO.PurchaseDAO.PurchaseDAO;
 import by.bsuir.DAO.UserDAO.UserDAO;
 import by.bsuir.DAO.VehicleDAO.VehicleDAO;

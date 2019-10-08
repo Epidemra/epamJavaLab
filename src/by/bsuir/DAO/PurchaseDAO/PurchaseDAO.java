@@ -2,6 +2,8 @@ package by.bsuir.DAO.PurchaseDAO;
 
 import by.bsuir.AutoBase.AutoBase;
 import by.bsuir.AutoBase.Purchase;
+import by.bsuir.Serialize.Serialize;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -11,51 +13,7 @@ import java.util.ArrayList;
 public class PurchaseDAO implements IPurchaseDAO {
 
     private static String filePath = getDatabasePath();
-
-    @SuppressWarnings("unchecked")
-    private static ArrayList<Purchase> deserializePurchases(){
-        ArrayList<Purchase> purchases = null;
-        try
-        {
-            // Reading the object from a file
-            FileInputStream file = new FileInputStream(filePath);
-            ObjectInputStream in = new ObjectInputStream(file);
-
-            // Method for deserialization of object
-            purchases = (ArrayList<Purchase>)in.readObject();
-
-            in.close();
-            file.close();
-        }
-        catch(IOException ex)
-        {
-            System.out.println("IOException is caught");
-        }
-        catch(ClassNotFoundException ex)
-        {
-            System.out.println("ClassNotFoundException is caught");
-        }
-        return purchases;
-    }
-
-    private static void serializePurchases(ArrayList<Purchase> purchases){
-        try
-        {
-            //Saving of object in a file
-            FileOutputStream file = new FileOutputStream(filePath);
-            ObjectOutputStream out = new ObjectOutputStream(file);
-
-            // Method for serialization of object
-            out.writeObject(purchases);
-
-            out.close();
-            file.close();
-        }
-        catch(IOException ex)
-        {
-            System.out.println("IOException is caught");
-        }
-    }
+    private static Serialize<Purchase> serializer = new Serialize<Purchase>();
 
     public void insert(Purchase purchase){
         ArrayList<Purchase> purchases = getPurchases();
@@ -64,17 +22,14 @@ public class PurchaseDAO implements IPurchaseDAO {
         }
         purchases.add(purchase);
         AutoBase.setPurchases(purchases);
-        serializePurchases(purchases);
+        serializer.serialize(filePath, purchases);
     }
 
     public ArrayList<Purchase> getPurchases(){
-        return deserializePurchases();
+        return serializer.deserialize(filePath);
     }
-
-
 
     private static String getDatabasePath(){
         return new File("").getAbsolutePath()+"\\data\\purchases.dat";
     }
-
 }

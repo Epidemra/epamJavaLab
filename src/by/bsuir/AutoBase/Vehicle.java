@@ -225,7 +225,7 @@ public abstract class Vehicle implements java.io.Serializable{
         }
         vehicle.setManager(AutoBase.getCurrentUser());
 
-        DaoFactory.getVehicleDAO().Insert(vehicle);
+        DaoFactory.getVehicleDAO().insert(vehicle);
     }
 
     /**
@@ -256,7 +256,7 @@ public abstract class Vehicle implements java.io.Serializable{
 
         if (vehicles != null && index <= vehicles.size()){
             vehicle = DaoFactory.getVehicleDAO().getVehicles().get(index - 1);
-            DaoFactory.getVehicleDAO().Delete(index - 1);
+            DaoFactory.getVehicleDAO().delete(index - 1);
         }
 
         return vehicle;
@@ -271,7 +271,7 @@ public abstract class Vehicle implements java.io.Serializable{
 
 
         if (vehicles != null && index <= vehicles.size()){
-            DaoFactory.getVehicleDAO().Delete(index - 1);
+            DaoFactory.getVehicleDAO().delete(index - 1);
             addVehicle();
         }
     }
@@ -284,7 +284,7 @@ public abstract class Vehicle implements java.io.Serializable{
         Purchase purchase = new Purchase();
         purchase.setCustomer(AutoBase.getCurrentUser());
         purchase.setVehicle(boughtVehicle);
-        DaoFactory.getPurchaseDAO().Insert(purchase);
+        DaoFactory.getPurchaseDAO().insert(purchase);
     }
 
     /**
@@ -325,6 +325,6 @@ public abstract class Vehicle implements java.io.Serializable{
     public static void sort(Comparator<Vehicle> cmp){
         ArrayList<Vehicle> vehicles = DaoFactory.getVehicleDAO().getVehicles();
         Collections.sort(vehicles, cmp);
-        DaoFactory.getVehicleDAO().SerializeVehicles(vehicles);
+        DaoFactory.getVehicleDAO().save(vehicles);
     }
 }

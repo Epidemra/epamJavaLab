@@ -3,7 +3,6 @@ package by.bsuir;
 import by.bsuir.AutoBase.AutoBase;
 import by.bsuir.ControllerLayer.Controller;
 
-
 /**
  * The type Main.
  */
@@ -16,9 +15,9 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        Controller.InitializeAutobase();
+        Controller.initializeAutobase();
         while (true){
-            AutoBase.Execute();
+            AutoBase.execute();
         }
     }
 }

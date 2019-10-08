@@ -146,7 +146,7 @@ public class AutoBase implements java.io.Serializable{
             User registeredUser = DaoFactory.getUserDAO().getUserByName((String)result[1]);
 
             if (registeredUser == null) {
-                DaoFactory.getUserDAO().Insert(user);
+                DaoFactory.getUserDAO().insert(user);
                 flag = true;
                 AutoBase.setCurrentUser(user);
             }
