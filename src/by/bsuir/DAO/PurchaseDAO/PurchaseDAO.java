@@ -5,6 +5,9 @@ import by.bsuir.AutoBase.Purchase;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * The type Purchase dao.
+ */
 public class PurchaseDAO implements IPurchaseDAO {
 
     private static String filePath = getDatabasePath();

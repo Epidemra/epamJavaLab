@@ -21,10 +21,20 @@ public class AutoBase implements java.io.Serializable{
     private static ArrayList<User> users;
     private static ArrayList<Purchase> purchases;
 
+    /**
+     * Gets purchases.
+     *
+     * @return the purchases
+     */
     public static ArrayList<Purchase> getPurchases() {
         return purchases;
     }
 
+    /**
+     * Sets purchases.
+     *
+     * @param purchases the purchases
+     */
     public static void setPurchases(ArrayList<Purchase> purchases) {
         AutoBase.purchases = purchases;
     }

@@ -23,10 +23,20 @@ public abstract class Vehicle implements java.io.Serializable{
     private FuelType fuelType;
     private User manager;
 
+    /**
+     * Gets manager.
+     *
+     * @return the manager
+     */
     public User getManager() {
         return manager;
     }
 
+    /**
+     * Sets manager.
+     *
+     * @param manager the manager
+     */
     public void setManager(User manager) {
         this.manager = manager;
     }
@@ -231,6 +241,9 @@ public abstract class Vehicle implements java.io.Serializable{
 
     /**
      * Delete vehicle.
+     *
+     * @param isPurchase the is purchase
+     * @return the vehicle
      */
     public static Vehicle deleteVehicle(boolean isPurchase){
         Vehicle vehicle = null;

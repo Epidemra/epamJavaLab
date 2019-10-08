@@ -37,5 +37,10 @@ public class DaoFactory {
         return vehicleDAO;
     }
 
+    /**
+     * Get purchase dao purchase dao.
+     *
+     * @return the purchase dao
+     */
     public static PurchaseDAO getPurchaseDAO(){ return purchaseDAO; }
 }
