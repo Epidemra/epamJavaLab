@@ -75,10 +75,10 @@ public class AutoBase implements java.io.Serializable{
     public static void setCurrentUser(User currentUser) {
         AutoBase.currentUser = currentUser;
         if (currentUser != null){
-            View.ShowMessage("Current user's name: " + AutoBase.getCurrentUser().getName());
+            View.showMessage("Current user's name: " + AutoBase.getCurrentUser().getName());
         }
         else{
-            View.ShowMessage("Logged out");
+            View.showMessage("Logged out");
         }
     }
 
@@ -127,7 +127,7 @@ public class AutoBase implements java.io.Serializable{
     /**
      * Execute.
      */
-    public static void Execute(){
+    public static void execute(){
         boolean flag = false;
         do {
             Object[] result = Controller.authorizeRequest();
@@ -155,18 +155,18 @@ public class AutoBase implements java.io.Serializable{
                     flag = true;
                     AutoBase.setCurrentUser(user);
                 }else {
-                    View.ShowMessage("Not correct password\n");
+                    View.showMessage("Not correct password\n");
                 }
             }
         }while (!flag);
 
-        ChooseActionLoop();
+        chooseActionLoop();
     }
 
     /**
      * Choose action loop.
      */
-    public static void ChooseActionLoop(){
+    public static void chooseActionLoop(){
         boolean flag = true;
         Comparator<Vehicle> pcomp;
 

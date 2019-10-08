@@ -15,8 +15,8 @@ public class UserDAO implements IUserDAO{
     private static String filePath = getDatabasePath();
 
     @SuppressWarnings("unchecked")
-    private static ArrayList<User> DeserializeUsers(){
-        ArrayList<User> Users = null;
+    private static ArrayList<User> deserializeUsers(){
+        ArrayList<User> users = null;
         try
         {
             // Reading the object from a file
@@ -24,7 +24,7 @@ public class UserDAO implements IUserDAO{
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
-            Users = (ArrayList<User>)in.readObject();
+            users = (ArrayList<User>)in.readObject();
 
             in.close();
             file.close();
@@ -37,10 +37,10 @@ public class UserDAO implements IUserDAO{
         {
             System.out.println("ClassNotFoundException is caught");
         }
-        return Users;
+        return users;
     }
 
-    private static void SerializeUsers(ArrayList<User> Users){
+    private static void serializeUsers(ArrayList<User> users){
         try
         {
             //Saving of object in a file
@@ -48,7 +48,7 @@ public class UserDAO implements IUserDAO{
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
-            out.writeObject(Users);
+            out.writeObject(users);
 
             out.close();
             file.close();
@@ -59,18 +59,18 @@ public class UserDAO implements IUserDAO{
         }
     }
 
-    public boolean Delete(User user){
+    public boolean delete(User user){
         throw new UnsupportedOperationException();
     }
 
-    public void Insert(User user){
-        ArrayList<User> Users = getUsers();
-        if (Users == null) {
-            Users = new ArrayList<User>();
+    public void insert(User user){
+        ArrayList<User> users = getUsers();
+        if (users == null) {
+            users = new ArrayList<User>();
         }
-        Users.add(user);
-        AutoBase.setUsers(Users);
-        SerializeUsers(Users);
+        users.add(user);
+        AutoBase.setUsers(users);
+        serializeUsers(users);
     }
 
     /**
@@ -80,7 +80,7 @@ public class UserDAO implements IUserDAO{
      * @return the user
      */
     public User getUserByName(String name){
-        ArrayList<User> users = DeserializeUsers();
+        ArrayList<User> users = deserializeUsers();
         if (users != null){
             for (User user: users
             ) {
@@ -94,7 +94,7 @@ public class UserDAO implements IUserDAO{
     }
 
     public ArrayList<User> getUsers(){
-        return DeserializeUsers();
+        return deserializeUsers();
     }
 
 

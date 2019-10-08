@@ -15,14 +15,14 @@ public interface IUserDAO {
      * @param user the user
      * @return the boolean
      */
-    boolean Delete(User user);
+    boolean delete(User user);
 
     /**
      * Insert.
      *
      * @param user the user
      */
-    void Insert(User user);
+    void insert(User user);
 
     /**
      * Gets users.

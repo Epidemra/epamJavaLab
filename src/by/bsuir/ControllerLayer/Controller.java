@@ -17,7 +17,7 @@ public class Controller {
     /**
      * Initialize autobase.
      */
-    public static void InitializeAutobase(){
+    public static void initializeAutobase(){
         AutoBase.setCarList(DaoFactory.getVehicleDAO().getVehicles());
         AutoBase.setUsers(DaoFactory.getUserDAO().getUsers());
     }
@@ -39,26 +39,19 @@ public class Controller {
     public static int chooseActionRequest(){
         int action = View.getAction();
 
-        //here ogranicheniya
         if (action == 13){
             View.printAvailableActions();
             action = -1;
         }
         if (action > 8 && AutoBase.getCurrentUser() instanceof Customer){
             action = -1;
-            View.ShowMessage("No roots");
+            View.showMessage("No roots");
         }
         if (action == 3 && AutoBase.getCurrentUser() instanceof Manager){
             action = -1;
-            View.ShowMessage("U must be a customer");
+            View.showMessage("U must be a customer");
         }
-            /*default:
-                notifyUserRequest("Unknown command!");
-                break;*/
-        /*if (!isAdmin && result>6) {
-            notifyUserRequest("You dont have enough root!");
-            result = -1;
-        }*/
+
         return action;
     }
 
@@ -81,11 +74,11 @@ public class Controller {
 
         if (list != null && list.size() != 0){
             for (Object object : list) {
-                View.ShowMessage(counter+":\n"+object.toString());
+                View.showMessage(counter+":\n"+object.toString());
                 counter++;
             }
         }else {
-            View.ShowMessage("Empty list");
+            View.showMessage("Empty list");
         }
     }
 

@@ -101,7 +101,7 @@ public class View {
      *
      * @param message the message
      */
-    public static void ShowMessage(String message){
+    public static void showMessage(String message){
         System.out.println(message);
     }
 
@@ -141,11 +141,5 @@ public class View {
         System.out.println("10. Delete vehicle");
         System.out.println("11. Update");
         System.out.println("12. Show purchases");
-        /*System.out.println("/findp - Find paper books");
-        System.out.println("/mod - Modify book");
-        System.out.println("/add - Add book");
-        System.out.println("/delete - Delete book");
-        System.out.println("/allusers - Show all users");
-        System.out.println("/udelete - Delete user");*/
     }
 }

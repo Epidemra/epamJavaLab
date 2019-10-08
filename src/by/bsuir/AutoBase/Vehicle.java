@@ -294,7 +294,7 @@ public abstract class Vehicle implements java.io.Serializable{
      */
     public static ArrayList<Object> findByMake(){
         ArrayList<Object> vehicles;
-        View.ShowMessage("Input make");
+        View.showMessage("Input make");
         ConsoleReader.getString();
         String answer = ConsoleReader.getString();
 
@@ -309,7 +309,7 @@ public abstract class Vehicle implements java.io.Serializable{
      */
     public static ArrayList<Object> findByYear(){
         ArrayList<Object> vehicles;
-        View.ShowMessage("Input year");
+        View.showMessage("Input year");
         int answer = ConsoleReader.getInt();
 
         vehicles = new ArrayList<Object>(DaoFactory.getVehicleDAO().getVehiclesByYear(answer));
@@ -322,10 +322,9 @@ public abstract class Vehicle implements java.io.Serializable{
      * @param cmp the cmp
      * @return the array list
      */
-    public static ArrayList<Object> sort(Comparator<Vehicle> cmp){
+    public static void sort(Comparator<Vehicle> cmp){
         ArrayList<Vehicle> vehicles = DaoFactory.getVehicleDAO().getVehicles();
         Collections.sort(vehicles, cmp);
         DaoFactory.getVehicleDAO().SerializeVehicles(vehicles);
-        return new ArrayList<Object>(DaoFactory.getVehicleDAO().getVehicles());
     }
 }

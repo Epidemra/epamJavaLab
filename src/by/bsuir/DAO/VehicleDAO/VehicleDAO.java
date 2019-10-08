@@ -15,8 +15,8 @@ public class VehicleDAO implements IVehicleDAO {
     private static String filePath = getDatabasePath();
 
     @SuppressWarnings("unchecked")
-    private static ArrayList<Vehicle> DeserializeVehicles(){
-        ArrayList<Vehicle> Vehicles = null;
+    private static ArrayList<Vehicle> deserializeVehicles(){
+        ArrayList<Vehicle> vehicles = null;
         try
         {
             // Reading the object from a file
@@ -24,7 +24,7 @@ public class VehicleDAO implements IVehicleDAO {
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
-            Vehicles = (ArrayList<Vehicle>)in.readObject();
+            vehicles = (ArrayList<Vehicle>)in.readObject();
 
             in.close();
             file.close();
@@ -37,15 +37,15 @@ public class VehicleDAO implements IVehicleDAO {
         {
             System.out.println("ClassNotFoundException is caught");
         }
-        return Vehicles;
+        return vehicles;
     }
 
     /**
      * Serialize vehicles.
      *
-     * @param Vehicles the vehicles
+     * @param vehicles the vehicles
      */
-    public void SerializeVehicles(ArrayList<Vehicle> Vehicles){
+    public void serializeVehicles(ArrayList<Vehicle> vehicles){
         try
         {
             //Saving of object in a file
@@ -53,7 +53,7 @@ public class VehicleDAO implements IVehicleDAO {
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
-            out.writeObject(Vehicles);
+            out.writeObject(vehicles);
 
             out.close();
             file.close();
@@ -64,27 +64,27 @@ public class VehicleDAO implements IVehicleDAO {
         }
     }
 
-    public void Delete(int index){
-        ArrayList<Vehicle> Vehicles = getVehicles();
-        if (Vehicles != null){
-            Vehicles.remove(index);
-            AutoBase.setCarList(Vehicles);
-            SerializeVehicles(Vehicles);
+    public void delete(int index){
+        ArrayList<Vehicle> vehicles = getVehicles();
+        if (vehicles != null){
+            vehicles.remove(index);
+            AutoBase.setCarList(vehicles);
+            serializeVehicles(vehicles);
         }
     }
 
-    public void Insert(Vehicle vehicle){
-        ArrayList<Vehicle> Vehicles = getVehicles();
-        if (Vehicles == null) {
-            Vehicles = new ArrayList<Vehicle>();
+    public void insert(Vehicle vehicle){
+        ArrayList<Vehicle> vehicles = getVehicles();
+        if (vehicles == null) {
+            vehicles = new ArrayList<Vehicle>();
         }
-        Vehicles.add(vehicle);
-        AutoBase.setCarList(Vehicles);
-        SerializeVehicles(Vehicles);
+        vehicles.add(vehicle);
+        AutoBase.setCarList(vehicles);
+        serializeVehicles(vehicles);
     }
 
     public ArrayList<Vehicle> getVehicles(){
-        return DeserializeVehicles();
+        return deserializeVehicles();
     }
 
     /**

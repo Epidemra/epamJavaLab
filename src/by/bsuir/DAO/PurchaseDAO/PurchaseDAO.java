@@ -13,8 +13,8 @@ public class PurchaseDAO implements IPurchaseDAO {
     private static String filePath = getDatabasePath();
 
     @SuppressWarnings("unchecked")
-    private static ArrayList<Purchase> DeserializePurchases(){
-        ArrayList<Purchase> Purchases = null;
+    private static ArrayList<Purchase> deserializePurchases(){
+        ArrayList<Purchase> purchases = null;
         try
         {
             // Reading the object from a file
@@ -22,7 +22,7 @@ public class PurchaseDAO implements IPurchaseDAO {
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
-            Purchases = (ArrayList<Purchase>)in.readObject();
+            purchases = (ArrayList<Purchase>)in.readObject();
 
             in.close();
             file.close();
@@ -35,10 +35,10 @@ public class PurchaseDAO implements IPurchaseDAO {
         {
             System.out.println("ClassNotFoundException is caught");
         }
-        return Purchases;
+        return purchases;
     }
 
-    private static void SerializePurchases(ArrayList<Purchase> Purchases){
+    private static void serializePurchases(ArrayList<Purchase> purchases){
         try
         {
             //Saving of object in a file
@@ -46,7 +46,7 @@ public class PurchaseDAO implements IPurchaseDAO {
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
-            out.writeObject(Purchases);
+            out.writeObject(purchases);
 
             out.close();
             file.close();
@@ -57,18 +57,18 @@ public class PurchaseDAO implements IPurchaseDAO {
         }
     }
 
-    public void Insert(Purchase purchase){
-        ArrayList<Purchase> Purchases = getPurchases();
-        if (Purchases == null) {
-            Purchases = new ArrayList<Purchase>();
+    public void insert(Purchase purchase){
+        ArrayList<Purchase> purchases = getPurchases();
+        if (purchases == null) {
+            purchases = new ArrayList<Purchase>();
         }
-        Purchases.add(purchase);
-        AutoBase.setPurchases(Purchases);
-        SerializePurchases(Purchases);
+        purchases.add(purchase);
+        AutoBase.setPurchases(purchases);
+        serializePurchases(purchases);
     }
 
     public ArrayList<Purchase> getPurchases(){
-        return DeserializePurchases();
+        return deserializePurchases();
     }
 
 

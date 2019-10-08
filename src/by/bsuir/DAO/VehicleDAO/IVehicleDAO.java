@@ -13,14 +13,14 @@ public interface IVehicleDAO {
      *
      * @param index the index
      */
-    void Delete(int index);
+    void delete(int index);
 
     /**
      * Insert.
      *
      * @param vehicle the vehicle
      */
-    void Insert(Vehicle vehicle);
+    void insert(Vehicle vehicle);
 
     /**
      * Gets vehicles.
