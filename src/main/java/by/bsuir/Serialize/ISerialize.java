@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * The interface Serialize.
+ *
+ * @param <T> the type parameter
  */
 public interface ISerialize<T> {
 

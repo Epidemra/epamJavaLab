@@ -14,6 +14,7 @@ public class Car extends  Vehicle implements java.io.Serializable{
      */
     public Car() {
     }
+    //jdbc:mysql://localhost:3306/?user=root
 
     /**
      * Instantiates a new Car.

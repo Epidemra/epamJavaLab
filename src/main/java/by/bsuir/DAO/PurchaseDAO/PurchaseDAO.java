@@ -30,6 +30,6 @@ public class PurchaseDAO implements IPurchaseDAO {
     }
 
     private static String getDatabasePath(){
-        return new File("").getAbsolutePath()+"\\data\\purchases.dat";
+        return new File("").getAbsolutePath()+"\\data\\purchases.xml";//"\\data\\purchases.dat";
     }
 }

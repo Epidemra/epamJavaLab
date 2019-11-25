@@ -30,6 +30,4 @@ public interface IUserDAO {
      * @return the users
      */
     ArrayList<User> getUsers();
-    /*ArrayList<User> getBooksByTitle(String title);
-    ArrayList<User> getBooksByAuthor(String author);*/
 }

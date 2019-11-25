@@ -53,6 +53,6 @@ public class UserDAO implements IUserDAO{
     }
 
     private static String getDatabasePath(){
-        return new File("").getAbsolutePath()+"\\data\\users.dat";
+        return new File("").getAbsolutePath()+"\\data\\users.xml";//"\\data\\users.dat";
     }
 }

@@ -83,6 +83,6 @@ public class VehicleDAO implements IVehicleDAO {
     }
 
     private static String getDatabasePath(){
-        return new File("").getAbsolutePath()+"\\data\\cars.dat";
+        return new File("").getAbsolutePath()+"\\data\\cars.xml";//"\\data\\cars.dat";
     }
 }

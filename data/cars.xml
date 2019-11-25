@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.3" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="by.bsuir.AutoBase.Car">
+    <void property="bodyType">
+     <object class="java.lang.Enum" method="valueOf">
+      <class>by.bsuir.AutoBase.BodyType</class>
+      <string>SUV</string>
+     </object>
+    </void>
+    <void property="doorCount">
+     <int>5</int>
+    </void>
+    <void property="fuelConsumption">
+     <double>4.5</double>
+    </void>
+    <void property="fuelType">
+     <object class="java.lang.Enum" id="FuelType0" method="valueOf">
+      <class>by.bsuir.AutoBase.FuelType</class>
+      <string>DIESEL</string>
+     </object>
+    </void>
+    <void property="make">
+     <string>volkswagen</string>
+    </void>
+    <void property="manager">
+     <object class="by.bsuir.AutoBase.Manager">
+      <void property="name">
+       <string>qwe</string>
+      </void>
+      <void property="password">
+       <string>qwe</string>
+      </void>
+     </object>
+    </void>
+    <void property="model">
+     <string>passat b5</string>
+    </void>
+    <void property="power">
+     <int>78</int>
+    </void>
+    <void property="price">
+     <double>3200.0</double>
+    </void>
+    <void property="seatCount">
+     <int>5</int>
+    </void>
+    <void property="year">
+     <int>2003</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="by.bsuir.AutoBase.Truck">
+    <void property="capacity">
+     <int>72</int>
+    </void>
+    <void property="fuelConsumption">
+     <double>25.0</double>
+    </void>
+    <void property="fuelType">
+     <object idref="FuelType0"/>
+    </void>
+    <void property="make">
+     <string>MAN</string>
+    </void>
+    <void property="manager">
+     <object class="by.bsuir.AutoBase.Manager">
+      <void property="name">
+       <string>qwe</string>
+      </void>
+      <void property="password">
+       <string>qwe</string>
+      </void>
+     </object>
+    </void>
+    <void property="model">
+     <string>TGX</string>
+    </void>
+    <void property="power">
+     <int>300</int>
+    </void>
+    <void property="price">
+     <double>18460.0</double>
+    </void>
+    <void property="truckCategory">
+     <object class="java.lang.Enum" method="valueOf">
+      <class>by.bsuir.AutoBase.TruckCategory</class>
+      <string>MEDIUM</string>
+     </object>
+    </void>
+    <void property="year">
+     <int>2017</int>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

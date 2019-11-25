@@ -23,12 +23,7 @@ public class ConsoleReader {
      *
      * @return the int
      */
-    public static int getInt(){
-        /*while (!in.hasNextInt()){
-            System.out.println("\nYou can input only numbers\n");
-        }*/
-        return in.nextInt();
-    }
+    public static int getInt() { return in.nextInt(); }
 
     /**
      * Get double double.

@@ -1,13 +1,21 @@
 package by.bsuir.ControllerLayer;
 
-import by.bsuir.AutoBase.AutoBase;
-import by.bsuir.AutoBase.Customer;
-import by.bsuir.AutoBase.Manager;
+import by.bsuir.AutoBase.*;
 import by.bsuir.DAO.DaoFactory;
+import by.bsuir.DBmigrate.DBController;
+import by.bsuir.DBmigrate.XMLVerifier;
 import by.bsuir.PresentationLayer.View;
 
+import javax.xml.XMLConstants;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.SchemaFactory;
+import java.io.File;
 import java.util.ArrayList;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * The type Controller.
@@ -16,9 +24,23 @@ public class Controller {
 
     /**
      * Initialize autobase.
+     *
+     * @throws SQLException the sql exception
      */
-    public static void initializeAutobase(){
-        AutoBase.setCarList(DaoFactory.getVehicleDAO().getVehicles());
+    public static void initializeAutobase() throws SQLException {
+
+        String carsXSD =  new File("").getAbsolutePath()+"\\data\\cars.xsd";
+        String carsXML =  new File("").getAbsolutePath()+"\\data\\cars.xml";
+        XMLVerifier xmlVerifier = new XMLVerifier();
+        if (xmlVerifier.validate(new File(carsXML), new File(carsXSD))) {
+            AutoBase.setCarList(DaoFactory.getVehicleDAO().getVehicles());
+            DBController.getInstance("admin", "root", "jdbc:mysql://localhost:3306/autobase?serverTimezone=Europe/Minsk&useSSL=false").Export(AutoBase.getCarList());
+        }
+        else{
+            System.out.println("Invalid format cars.xml");
+            System.exit(0);
+        }
+
         AutoBase.setUsers(DaoFactory.getUserDAO().getUsers());
     }
 
